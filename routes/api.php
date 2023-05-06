@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CuponControllerAPI;
+use App\Http\Controllers\VentaControllerAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,12 @@ Route::controller(CuponControllerAPI::class)->group(function(){
     Route::post('/cupon','store');
     Route::put('/cupon/{id}','update');
     Route::delete('/cupon/{id}','destroy');
+});
+
+Route::controller(VentaControllerAPI::class)->group(function(){
+    Route::get('/venta','index');
+    Route::get('/venta/{id}','show');
+    Route::post('/venta','store');
+    Route::put('/venta/{id}','update');
+    Route::delete('/venta/{id}','destroy');
 });

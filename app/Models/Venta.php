@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $Estado_Pago_Venta
  * @property int $Estado_Canje_Venta
  * @property Carbon $Fecha_Canje_Venta
+ * 
+ * @property Cupon $cupon
+ * @property Usuario $usuario
  *
  * @package App\Models
  */
@@ -44,4 +47,14 @@ class Venta extends Model
 		'Estado_Canje_Venta',
 		'Fecha_Canje_Venta'
 	];
+
+	public function cupon()
+	{
+		return $this->belongsTo(Cupon::class, 'ID_Cupon');
+	}
+
+	public function usuario()
+	{
+		return $this->belongsTo(Usuario::class, 'ID_Usuario');
+	}
 }

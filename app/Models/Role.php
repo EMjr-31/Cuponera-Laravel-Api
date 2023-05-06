@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $ID_Rol
  * @property string $Rol
  * @property int $Estado_Rol
+ * 
+ * @property Collection|Usuario[] $usuarios
  *
  * @package App\Models
  */
@@ -32,4 +35,9 @@ class Role extends Model
 		'Rol',
 		'Estado_Rol'
 	];
+
+	public function usuarios()
+	{
+		return $this->hasMany(Usuario::class, 'ID_Rol');
+	}
 }

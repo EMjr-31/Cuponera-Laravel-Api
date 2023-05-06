@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,6 +22,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $Estado_Usuario
  * @property string $ID_Rol
  * @property string|null $ID_Empresa
+ * 
+ * @property Role $role
+ * @property Empresa|null $empresa
+ * @property Collection|Venta[] $ventas
  *
  * @package App\Models
  */
@@ -46,4 +51,19 @@ class Usuario extends Model
 		'ID_Rol',
 		'ID_Empresa'
 	];
+
+	public function role()
+	{
+		return $this->belongsTo(Role::class, 'ID_Rol');
+	}
+
+	public function empresa()
+	{
+		return $this->belongsTo(Empresa::class, 'ID_Empresa');
+	}
+
+	public function ventas()
+	{
+		return $this->hasMany(Venta::class, 'ID_Usuario');
+	}
 }

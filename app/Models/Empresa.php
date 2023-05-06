@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,6 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $Comision_Empresa
  * @property int $Estado_Empresa
  * @property Carbon $Fecha_Creacion_Empresa
+ * 
+ * @property Collection|Cupon[] $cupons
+ * @property Collection|Usuario[] $usuarios
  *
  * @package App\Models
  */
@@ -41,4 +45,14 @@ class Empresa extends Model
 		'Estado_Empresa',
 		'Fecha_Creacion_Empresa'
 	];
+
+	public function cupons()
+	{
+		return $this->hasMany(Cupon::class, 'ID_Empresa');
+	}
+
+	public function usuarios()
+	{
+		return $this->hasMany(Usuario::class, 'ID_Empresa');
+	}
 }

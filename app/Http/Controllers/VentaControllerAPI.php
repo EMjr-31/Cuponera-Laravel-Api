@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cupon;
+use App\Models\Venta;
 use Illuminate\Http\Request;
 
-class CuponControllerAPI extends Controller
+class VentaControllerAPI extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $cupones=Cupon::all();
-        return $cupones;
+        $ventas=Venta::all();
+        return $ventas;
     }
 
     /**
@@ -21,22 +21,21 @@ class CuponControllerAPI extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($cupon)
+    public function show($venta)
     {
-        $cupon=Cupon::find($cupon);
-        return $cupon;
+        $venta=Venta::with('Cupon','Usuario')->find($venta);
+        return $venta;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cupon $cupon)
+    public function update(Request $request, Venta $venta)
     {
         //
     }
@@ -44,7 +43,7 @@ class CuponControllerAPI extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cupon $cupon)
+    public function destroy(Venta $venta)
     {
         //
     }

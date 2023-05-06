@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,6 +24,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $Cantidad_Cupon
  * @property int $Estado_Cupon
  * @property string $ID_Empresa
+ * @property string $Img
+ * 
+ * @property Empresa $empresa
+ * @property Collection|Venta[] $ventas
  *
  * @package App\Models
  */
@@ -53,6 +58,17 @@ class Cupon extends Model
 		'Descripcion_Cupon',
 		'Cantidad_Cupon',
 		'Estado_Cupon',
-		'ID_Empresa'
+		'ID_Empresa',
+		'Img'
 	];
+
+	public function empresa()
+	{
+		return $this->belongsTo(Empresa::class, 'ID_Empresa');
+	}
+
+	public function ventas()
+	{
+		return $this->hasMany(Venta::class, 'ID_Cupon');
+	}
 }
