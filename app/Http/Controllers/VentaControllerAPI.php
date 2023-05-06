@@ -12,7 +12,7 @@ class VentaControllerAPI extends Controller
      */
     public function index()
     {
-        $ventas=Venta::all();
+        $ventas=Venta::with('Cupon','Usuario')->get();
         return $ventas;
     }
 
