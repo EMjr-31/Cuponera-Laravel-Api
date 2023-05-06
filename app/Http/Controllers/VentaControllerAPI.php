@@ -35,9 +35,13 @@ class VentaControllerAPI extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Venta $venta)
+    public function update(Request $request, $venta)
     {
-        //
+        $cupon=Venta::find($venta);
+        $cupon->Estado_Canje_Venta=$request->input('Estado_Canje_Venta');
+        $cupon->Fecha_Canje_Venta=$request->input('Fecha_Canje_Venta');
+        $cupon->save();
+        return 1;
     }
 
     /**
