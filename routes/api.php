@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CuponControllerAPI;
 use App\Http\Controllers\VentaControllerAPI;
+use App\Http\Controllers\AuthControllerAPi;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,8 @@ Route::controller(VentaControllerAPI::class)->group(function(){
     Route::post('/venta','store');
     Route::put('/venta/{id}','update');
     Route::delete('/venta/{id}','destroy');
+});
+
+Route::controller(AuthControllerAPi::class)->group(function(){
+    Route::get('/usuario','login');
 });
