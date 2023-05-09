@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CuponControllerAPI;
 use App\Http\Controllers\VentaControllerAPI;
-use App\Http\Controllers\AuthControllerAPi;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ Route::controller(CuponControllerAPI::class)->group(function(){
     Route::delete('/cupon/{id}','destroy');
 });
 
-Route::controller(VentaControllerAPI::class)->group(function(){
+Route::middleware('auth:sanctum')->controller(VentaControllerAPI::class)->group(function(){
     Route::get('/venta','index');
     Route::get('/venta/{id}','show');
     Route::post('/venta','store');
@@ -37,6 +37,15 @@ Route::controller(VentaControllerAPI::class)->group(function(){
     Route::delete('/venta/{id}','destroy');
 });
 
-Route::controller(AuthControllerAPi::class)->group(function(){
-    Route::get('/usuario','login');
+
+
+Route::controller(LoginController::class)->group(function(){
+    Route::post('/usuario','login');
+    Route::post('/usuario/registro','registro');
+    
+});
+
+Route::middleware('auth:sanctum')->controller(LoginController::class)->group(function(){
+    Route::post('/usuario/perfil','perfil');
+    Route::post('/usuario/logout','logout');
 });
