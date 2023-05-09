@@ -41,7 +41,6 @@ Route::middleware('auth:sanctum')->controller(VentaControllerAPI::class)->group(
 
 Route::controller(LoginController::class)->group(function(){
     Route::post('/usuario','login');
-    Route::post('/usuario/registro','registro');
     
 });
 

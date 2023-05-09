@@ -43,11 +43,16 @@ class LoginController extends Controller
         ]);
         $user= Usuario::where("Correo_Usuario","=",$request->Correo_Usuario)->first();
         if(isset($user)){
-            if(hash('sha256',$request->Contraseña_Usuario)==$user->Contraseña_Usuario){
-                $token =$user->createToken("auth_token")->plainTextToken;
-                return response()->json(["mensaje"=>"se inicio sesion","access_Token"=>$token]);
+            if($user->ID_Rol=="ROL002"){
+                if(hash('sha256',$request->Contraseña_Usuario)==$user->Contraseña_Usuario){
+                    $token =$user->createToken("auth_token")->plainTextToken;
+                    return response()->json(["mensaje"=>"se inicio sesion","access_Token"=>$token]);
+                }else{
+                    return response()->json(["mensaje"=>"Usuario no permitido","error"=>true],200);
+                }
+
             }else{
-                return response()->json(["mensaje"=>"contra no es valida","error"=>true],200);
+
             }
 
         }else{
