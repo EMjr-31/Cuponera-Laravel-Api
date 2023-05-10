@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $Comision_Empresa
  * @property int $Estado_Empresa
  * @property Carbon $Fecha_Creacion_Empresa
+ * @property string|null $img_empresa
  * 
  * @property Collection|Cupon[] $cupons
  * @property Collection|Usuario[] $usuarios
@@ -43,7 +44,8 @@ class Empresa extends Model
 		'Rubro_Empresa',
 		'Comision_Empresa',
 		'Estado_Empresa',
-		'Fecha_Creacion_Empresa'
+		'Fecha_Creacion_Empresa',
+		'img_empresa'
 	];
 
 	public function cupons()

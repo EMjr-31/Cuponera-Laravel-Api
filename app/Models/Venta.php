@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $Fecha_Compra_Venta
  * @property int $Estado_Pago_Venta
  * @property int $Estado_Canje_Venta
- * @property Carbon $Fecha_Canje_Venta
+ * @property Carbon|null $Fecha_Canje_Venta
  * 
  * @property Cupon $cupon
  * @property Usuario $usuario
