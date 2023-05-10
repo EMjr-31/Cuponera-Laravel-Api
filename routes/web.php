@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CuponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::controller(CuponController::class)->group(function(){
+    Route::get('/cupon','index');
+    Route::get('/cupon/{id}','show');
+    Route::post('/cupon','store');
+    Route::put('/cupon/{id}','update');
+    Route::delete('/cupon/{id}','destroy');
+});
+
+
