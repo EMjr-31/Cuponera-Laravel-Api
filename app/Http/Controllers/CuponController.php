@@ -13,7 +13,7 @@ class CuponController extends Controller
     public function index()
     {
         $cupones = Cupon::With('Empresa')->get();
-        return $cupones;
+        return view('Cupones.Cupones',compact('cupones'));
     }
 
     /**
@@ -21,7 +21,7 @@ class CuponController extends Controller
      */
     public function create()
     {
-        //
+        return view('Cupones.nuevo');
     }
 
     /**

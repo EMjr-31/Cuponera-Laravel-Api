@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::controller(CuponController::class)->group(function(){
     Route::get('/cupon','index');
+    Route::get('/cupon/create','create');
     Route::get('/cupon/{id}','show');
     Route::post('/cupon','store');
     Route::put('/cupon/{id}','update');
