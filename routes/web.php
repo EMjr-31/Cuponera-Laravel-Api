@@ -25,4 +25,6 @@ Route::get('/', function () {
 Route::resource('cupon',CuponController::class);
 Route::resource('usuario',UsuarioController::class);
 Route::resource('empresa',EmpresaController::class);
+Route::resource('rubro',RubroController::class);
+
 

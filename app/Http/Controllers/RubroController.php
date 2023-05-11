@@ -13,7 +13,7 @@ class RubroController extends Controller
     public function index()
     {
         $rubros= Rubro::get();
-        return $rubros;
+        return view('Rubros.Rubros',compact('rubros'));
     }
 
     /**
@@ -21,7 +21,10 @@ class RubroController extends Controller
      */
     public function create()
     {
-        //
+        $max_codigo = Rubro::max('id_rubro');
+        $codigo=$max_codigo+1;
+
+        return view('Rubros.nuevo',compact('codigo'));
     }
 
     /**
@@ -29,7 +32,17 @@ class RubroController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre_rubro'=>['required'],
 
+        ]);
+        $rubro= new Rubro();
+        $rubro->nombre_rubro=$request->nombre_rubro;
+        if($rubro->save()){
+            return to_route('rubro.index')->with("success","Rubro creado");
+        }else{
+            return "no funciono :c";
+        }
     }
 
     /**
@@ -46,7 +59,7 @@ class RubroController extends Controller
      */
     public function edit(Rubro $rubro)
     {
-        //
+        return view('Rubros.editar',compact('rubro'));
     }
 
     /**
@@ -54,7 +67,16 @@ class RubroController extends Controller
      */
     public function update(Request $request, Rubro $rubro)
     {
-        //
+        $request->validate([
+            'nombre_rubro'=>['required'],
+
+        ]);
+        $rubro->nombre_rubro=$request->nombre_rubro;
+        if($rubro->save()){
+            return to_route('rubro.index')->with("success","Rubro modificada");
+        }else{
+            return "no funciono :c";
+        }
     }
 
     /**
@@ -62,6 +84,7 @@ class RubroController extends Controller
      */
     public function destroy(Rubro $rubro)
     {
-        //
+        $rubro->delete();
+        return to_route('rubro.index')->with("success","Rubro eliminado");
     }
 }
