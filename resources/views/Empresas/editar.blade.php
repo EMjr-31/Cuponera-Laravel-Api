@@ -3,8 +3,9 @@
 @section('contenido')
 
 <div class="container col-md-6 rounded shadow p-3 mt-4">
-    <form role="form" action="{{route('empresa.store')}}" method="POST">
-        @csrf
+    <form role="form"  action="{{route('empresa.update',$empresa->ID_Empresa)}}" method="POST">
+      @csrf
+      @method('PUT')
         <fieldset>
           <legend>Editar Informacion de la Empresa</legend>
           @if ($errors->all())
@@ -18,36 +19,33 @@
             @endif
           <div class="mb-3">
             <div class="mb-3">
-                <p><strong>Codigo de la Empresa: {{$codigo}}</strong></p>
-                <input type="hidden" id="ID_Empresa" name="ID_Empresa" class="form-control" placeholder="Codigo Cupon" value="{{$codigo}}">
+                <p><strong>Codigo de la Empresa: {{$empresa->ID_Empresa}}</strong></p>
+                <input type="hidden" id="ID_Empresa" name="ID_Empresa" class="form-control" placeholder="Codigo Cupon" value="{{$empresa->ID_Empresa}}">
               </div>
           </div>
           <div class="mb-3">
             <label for="Rubro_Empresa" class="form-label">Rubro:</label>
             <select id="Rubro_Empresa" class="form-select form-select-lg  mi-selector" name="Rubro_Empresa">
                 @foreach ($rubros as $rubro)
-                <option value='{{$rubro->nombre_rubro}}' {{old('Rubro_Empresa')==$rubro->nombre_rubro?"selected":"";}}>{{$rubro->nombre_rubro}}</option>
+                <option value='{{$rubro->nombre_rubro}}' {{old('Rubro_Empresa',$empresa->Rubro_Empresa)==$rubro->nombre_rubro?"selected":"";}}>{{$rubro->nombre_rubro}}</option>
                 @endforeach
             </select>
           </div>
           <div class="mb-3">
             <div class="mb-3">
                 <label for="Nombre_Empresa" class="form-label">Empresa</label>
-                <input type="text" id="Nombre_Empresa" name="Nombre_Empresa" class="form-control" placeholder="Nombre" value="{{old('Nombre_Empresa')}}">
+                <input type="text" id="Nombre_Empresa" name="Nombre_Empresa" class="form-control" placeholder="Nombre" value="{{old('Nombre_Empresa',$empresa->Nombre_Empresa)}}">
               </div>
           </div>
           <div class="mb-3">
             <label for="Comision_Empresa" class="form-label">Comision:</label>
-            <input type="number" id="Comision_Empresa" name="Comision_Empresa" class="form-control" placeholder="0.0" min="0.1" step="0.1" max="0.9" value="{{old('Precio_Regular_Cupon')}}">
-          </div>
-          <div class="mb-3">
-            <input type="date" id="Fecha_Creacion_Empresa" name="Fecha_Creacion_Empresa" class="form-control" value="{{date("Y-m-d")}}" hidden>
+            <input type="number" id="Comision_Empresa" name="Comision_Empresa" class="form-control" placeholder="0.0" min="0.1" step="0.1" max="0.9" value="{{old('Comision_Empresa',$empresa->Comision_Empresa)}}">
           </div>
           <div class="mb-3">
             <label for="Estado_Empresa" class="form-label">Estado</label>
             <select id="Estado_Empresa" class="form-select form-select-lg  mi-selector" name="Estado_Empresa" >
-                <option value='1' {{old('Estado_Empresa')==1?'selected':'';}}>Activo</option>
-                <option value='0' {{old('Estado_Empresa')==0?'selected':'';}}>Dehabilitado</option>
+                <option value='1' {{old('Estado_Empresa',$empresa->Estado_Empresa)==1?'selected':'';}}>Activo</option>
+                <option value='0' {{old('Estado_Empresa',$empresa->Estado_Empresa)==0?'selected':'';}}>Dehabilitado</option>
             </select>
         </div>
           <button type="submit" class="btn btn-primary">Guardar</button>

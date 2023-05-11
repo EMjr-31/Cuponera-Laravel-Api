@@ -6,7 +6,7 @@
     <form role="form" action="{{route('empresa.store')}}" method="POST">
         @csrf
         <fieldset>
-          <legend>Editar Informacion de la Empresa</legend>
+          <legend>Informacion de la Empresa</legend>
           @if ($errors->all())
             <hr>
             <div class="alert alert-danger ">
@@ -38,7 +38,7 @@
           </div>
           <div class="mb-3">
             <label for="Comision_Empresa" class="form-label">Comision:</label>
-            <input type="number" id="Comision_Empresa" name="Comision_Empresa" class="form-control" placeholder="0.0" min="0.1" step="0.1" max="0.9" value="{{old('Precio_Regular_Cupon')}}">
+            <input type="number" id="Comision_Empresa" name="Comision_Empresa" class="form-control" placeholder="0.0" min="0.1" step="0.1" max="0.9" value="{{old('Comision_Empresa')}}">
           </div>
           <div class="mb-3">
             <input type="date" id="Fecha_Creacion_Empresa" name="Fecha_Creacion_Empresa" class="form-control" value="{{date("Y-m-d")}}" hidden>
