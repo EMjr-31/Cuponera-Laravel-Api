@@ -50,10 +50,6 @@
             <input type="number" id="Precio_Oferta_Cupon" name="Precio_Oferta_Cupon" class="form-control" placeholder="Precio Oferta" min="0.1" step="0.1">
           </div>
           <div class="mb-3">
-            <label for="Fecha_Inicio_Oferta_Cupon" class="form-label">Precio oferta:</label>
-            <input type="date" id="Fecha_Inicio_Oferta_Cupon" name="Fecha_Inicio_Oferta_Cupon" class="form-control" >
-          </div>
-          <div class="mb-3">
             <label for="Fecha_Inicio_Oferta_Cupon" class="form-label">Fecha de inicio de la oferta:</label>
             <input type="date" id="Fecha_Inicio_Oferta_Cupon" name="Fecha_Inicio_Oferta_Cupon" class="form-control" >
           </div>

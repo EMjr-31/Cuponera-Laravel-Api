@@ -57,9 +57,29 @@ class CuponController extends Controller
             'Fecha_Limite_Cupon'=>['required','after:Fecha_Fin_Oferta_Cupon'],
             'Descripcion_Cupon'=>['required'],
             'Cantidad_Cupon'=>['required','min:1'],
-            'Estado_Cupon'=>['required']
+            'Estado_Cupon'=>['required'],
+            'ID_Empresa'=>['required']
+
         ]);
-        return $request;
+        $cupon= new Cupon();
+        $cupon->ID_Cupon=$request->ID_Cupon;
+        $cupon->Titulo_Cupon=$request->Titulo_Cupon;
+        $cupon->Precio_Regular_Cupon=$request->Precio_Regular_Cupon;
+        $cupon->Precio_Oferta_Cupon=$request->Precio_Oferta_Cupon;
+        $cupon->Fecha_Inicio_Oferta_Cupon=$request->Fecha_Inicio_Oferta_Cupon;
+        $cupon->Fecha_Fin_Oferta_Cupon=$request->Fecha_Fin_Oferta_Cupon;
+        $cupon->Fecha_Limite_Cupon=$request->Fecha_Limite_Cupon;
+        $cupon->Descripcion_Cupon=$request->Descripcion_Cupon;
+        $cupon->Cantidad_Cupon=$request->Cantidad_Cupon;
+        $cupon->Estado_Cupon=$request->Estado_Cupon;
+        $cupon->ID_Empresa=$request->ID_Empresa;
+        $cupon->img=$request->ID_Cupon;
+
+        if($cupon->save()){
+            return to_route('Cupon.index')->with("success","Cupon creado");
+        }else{
+            return "no funciono :c";
+        }
     }
 
     /**
