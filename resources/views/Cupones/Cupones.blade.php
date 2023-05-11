@@ -36,8 +36,7 @@
                 <td>{{$cupon->Empresa->Nombre_Empresa}}</td>
                 <td>
                     <button type="button" class="btn btn-success ver" data-bs-toggle="modal" data-bs-target="#modal" onclick="detalles('{{$cupon->ID_Cupon}}')"><i class="fa-solid fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning editar"><i
-                            class="fa-solid fa-edit"></i></button>
+                    <a class="btn btn-warning editar" href="{{route('cupon.edit',$cupon->ID_Cupon)}}"><i class="fa-solid fa-edit"  ></i></a>
                     <button type="button" class="btn btn-danger delete"><i
                             class="fa-solid fa-trash"></i></button>
                 </td>

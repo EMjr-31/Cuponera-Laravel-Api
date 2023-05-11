@@ -95,17 +95,50 @@ class CuponController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cupon $cupon)
+    public function edit($id_cupon)
     {
-        //
+        $rubros= Rubro::get();
+        $empresas= Empresa::get();
+        $cupon = Cupon::With('Empresa')->find($id_cupon);
+        return view('Cupones.editar',compact('rubros','empresas','cupon'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cupon $cupon)
+    public function update(Request $request,Cupon $cupon)
     {
-        //
+        $request->validate([
+            'ID_Cupon'=>['required'],
+            'Titulo_Cupon'=>['required'],
+            'Precio_Regular_Cupon'=>['required','numeric','min:0'],
+            'Precio_Oferta_Cupon'=>['required','numeric','min:0'],
+            'Fecha_Inicio_Oferta_Cupon'=>['required','after:tomorrow'],
+            'Fecha_Fin_Oferta_Cupon'=>['required','after:Fecha_Inicio_Oferta_Cupon'],
+            'Fecha_Limite_Cupon'=>['required','after:Fecha_Fin_Oferta_Cupon'],
+            'Descripcion_Cupon'=>['required'],
+            'Cantidad_Cupon'=>['required','min:1'],
+            'Estado_Cupon'=>['required'],
+            'ID_Empresa'=>['required']
+
+        ]);
+        $cupon->Titulo_Cupon=$request->Titulo_Cupon;
+        $cupon->Precio_Regular_Cupon=$request->Precio_Regular_Cupon;
+        $cupon->Precio_Oferta_Cupon=$request->Precio_Oferta_Cupon;
+        $cupon->Fecha_Inicio_Oferta_Cupon=$request->Fecha_Inicio_Oferta_Cupon;
+        $cupon->Fecha_Fin_Oferta_Cupon=$request->Fecha_Fin_Oferta_Cupon;
+        $cupon->Fecha_Limite_Cupon=$request->Fecha_Limite_Cupon;
+        $cupon->Descripcion_Cupon=$request->Descripcion_Cupon;
+        $cupon->Cantidad_Cupon=$request->Cantidad_Cupon;
+        $cupon->Estado_Cupon=$request->Estado_Cupon;
+        $cupon->ID_Empresa=$request->ID_Empresa;
+        $cupon->img=$request->ID_Cupon;
+        if($cupon->save()){
+            return to_route('Cupones.index')->with("success","Cupon creado");
+        }else{
+            return "no funciono :c";
+        }
     }
 
     /**
