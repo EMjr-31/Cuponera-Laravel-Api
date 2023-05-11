@@ -26,17 +26,42 @@
                 </button>
                 <div id="menu_nav" class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-3">
-                        <li class="nav-item"><a class="nav-link" href="">Usuarios</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">
+                                Usuarios
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{route('usuario.create')}}" class="dropdown-item">Ingresar</a></li>
+                                <li><a href="{{route('usuario.index')}}" class="dropdown-item">Ver Usuarios</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">
                                 Empresas
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="" class="dropdown-item">Ingresar</a></li>
-                                <li><a href="" class="dropdown-item">Ver empresas</a></li>
+                                <li><a href="{{route('empresa.create')}}" class="dropdown-item">Ingresar Empresa</a></li>
+                                <li><a href="{{route('empresa.index')}}" class="dropdown-item">Ver Empresas</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="">Cupones</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">
+                                Cupones
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{route('cupon.create')}}" class="dropdown-item">Ingresar Cupon</a></li>
+                                <li><a href="{{route('cupon.index')}}" class="dropdown-item">Ver Cupones</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">
+                                Rubros
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{route('rubro.create')}}" class="dropdown-item">Ingresar Rubro</a></li>
+                                <li><a href="{{route('rubro.index')}}" class="dropdown-item">Ver Rubro</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ms-3 float-lg-end">
                         <li class="nav-item dropdown">

@@ -2,7 +2,7 @@
 @section('nombre_pagina','Editar Cupon')
 @section('contenido')
 <div class="container col-md-6 rounded shadow p-3 mt-4">
-    <form role="form"  action="{{route('usuario.update',$usuario->id)}}" method="POST">
+    <form role="form"  action="{{route('cupon.update',$cupon->ID_Cupon)}}" method="POST">
       @csrf
       @method('PUT')
         <fieldset>

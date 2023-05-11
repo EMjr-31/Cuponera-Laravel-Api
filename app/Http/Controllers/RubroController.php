@@ -34,7 +34,6 @@ class RubroController extends Controller
     {
         $request->validate([
             'nombre_rubro'=>['required'],
-
         ]);
         $rubro= new Rubro();
         $rubro->nombre_rubro=$request->nombre_rubro;
