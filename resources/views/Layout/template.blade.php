@@ -66,11 +66,11 @@
                     <ul class="navbar-nav ms-3 float-lg-end">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">
-                                User
+                                {{Auth::user()->Nombre_Usuario}}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="" class="dropdown-item">Perfil</a></li>
-                                <li><a href="" class="dropdown-item">Cerrar Sesion</a></li>
+                                <li><a href="{{route('usuario.edit',Auth::user()->id)}}" class="dropdown-item">Editar Perfil</a></li>
+                                <li><a href="{{url('/login/logout')}}" class="dropdown-item">Cerrar Sesion</a></li>
                             </ul>
                         </li>
                     </ul>

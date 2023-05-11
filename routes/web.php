@@ -6,6 +6,7 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\RubroController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\LoginUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,17 @@ use App\Http\Controllers\UsuarioController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('User.Login');
 });
 
-Route::resource('cupon',CuponController::class);
-Route::resource('usuario',UsuarioController::class);
-Route::resource('empresa',EmpresaController::class);
-Route::resource('rubro',RubroController::class);
+Route::middleware('auth:sanctum')->resource('cupon',CuponController::class);
+Route::middleware('auth:sanctum')->resource('usuario',UsuarioController::class);
+Route::middleware('auth:sanctum')->resource('empresa',EmpresaController::class);
+Route::middleware('auth:sanctum')->resource('rubro',RubroController::class);
 
 
+Route::controller(LoginUserController::class)->group(function(){
+    Route::get('/login','login');
+    Route::post('/login/verificar','verificar');
+    Route::get('/login/logout','logout');
+});
