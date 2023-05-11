@@ -76,7 +76,7 @@ class CuponController extends Controller
         $cupon->img=$request->ID_Cupon;
 
         if($cupon->save()){
-            return to_route('Cupon.index')->with("success","Cupon creado");
+            return to_route('cupon.index')->with("success","Cupon creado");
         }else{
             return "no funciono :c";
         }
