@@ -6,7 +6,7 @@
 @endif
 <div class="container mt-4 d-flex justify-content-between p-2">
     <h2 class="d-block">Lista de usuarios</h2>
-    <a href="{{route('usuario.create')}}" class="btn btn-primary ">Agregar cupon</a>
+    <a href="{{route('usuario.create')}}" class="btn btn-primary ">Agregar Usuario</a>
 </div>
 <div class="row rounded shadow mt-3">
     <table id="myTable" class="display">
