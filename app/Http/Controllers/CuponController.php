@@ -114,7 +114,7 @@ class CuponController extends Controller
             'Titulo_Cupon'=>['required'],
             'Precio_Regular_Cupon'=>['required','numeric','min:0'],
             'Precio_Oferta_Cupon'=>['required','numeric','min:0'],
-            'Fecha_Inicio_Oferta_Cupon'=>['required','after:tomorrow'],
+            'Fecha_Inicio_Oferta_Cupon'=>['required'],
             'Fecha_Fin_Oferta_Cupon'=>['required','after:Fecha_Inicio_Oferta_Cupon'],
             'Fecha_Limite_Cupon'=>['required','after:Fecha_Fin_Oferta_Cupon'],
             'Descripcion_Cupon'=>['required'],
@@ -135,7 +135,7 @@ class CuponController extends Controller
         $cupon->ID_Empresa=$request->ID_Empresa;
         $cupon->img=$request->ID_Cupon;
         if($cupon->save()){
-            return to_route('Cupones.index')->with("success","Cupon creado");
+            return to_route('cupon.index')->with("success","Cupon actualizado");
         }else{
             return "no funciono :c";
         }
@@ -146,6 +146,7 @@ class CuponController extends Controller
      */
     public function destroy(Cupon $cupon)
     {
-        //
+        $cupon->delete();
+        return to_route('cupon.index')->with("success","Cupon eliminado");
     }
 }

@@ -1,6 +1,9 @@
 @extends('Layout.template')
 @section('nombre_pagina','Lista de cupones')
 @section('contenido')
+@if(isset($success))
+    @dump($success)
+@endif
 <div class="container mt-4 d-flex justify-content-between p-2">
     <h2 class="d-block">Lista de cupones</h2>
     <a href="{{route('cupon.create')}}" class="btn btn-primary ">Agregar cupon</a>
@@ -35,10 +38,9 @@
                 </td>
                 <td>{{$cupon->Empresa->Nombre_Empresa}}</td>
                 <td>
-                    <button type="button" class="btn btn-success ver" data-bs-toggle="modal" data-bs-target="#modal" onclick="detalles('{{$cupon->ID_Cupon}}')"><i class="fa-solid fa-eye"></i></button>
+                    <button type="button" class="btn btn-success ver" data-bs-toggle="modal" data-bs-target="#modal" onclick="detalles('{{$cupon->ID_Cupon}}',1)"><i class="fa-solid fa-eye"></i></button>
                     <a class="btn btn-warning editar" href="{{route('cupon.edit',$cupon->ID_Cupon)}}"><i class="fa-solid fa-edit"  ></i></a>
-                    <button type="button" class="btn btn-danger delete"><i
-                            class="fa-solid fa-trash"></i></button>
+                    <button type="button" class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#modal" onclick="detalles('{{$cupon->ID_Cupon}}',2)"><i class="fa-solid fa-trash"></i></button>
                 </td>
             </tr>
                 
@@ -69,13 +71,18 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <form action="" method="POST" id="eliminar_cupon" hidden>
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                </form>
             </div>
             
         </div>
     </div>
 </div>
 <script>
-    function detalles(id){
+    function detalles(id,op){
     $.ajax({
         url:"/cuponera-laravel/public/cupon/"+id,
         type:"GET",
@@ -112,7 +119,13 @@
             $('#Descripcion_Cupon').text(datos.Descripcion_Cupon);
             $('#Cantidad_Cupon').text(datos.Cantidad_Cupon);
             $('#Empresa').text(datos.empresa.Nombre_Empresa);
+            if(op==2){
+                $('#eliminar_cupon').removeAttr('hidden');
+                $('#eliminar_cupon').prop("action","http://localhost/cuponera-laravel/public/cupon/"+datos.ID_Cupon);
 
+            }else{
+                $('#eliminar_cupon').attr('hidden');
+            }
         }
     })
     }

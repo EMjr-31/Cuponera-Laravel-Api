@@ -1,6 +1,7 @@
 @extends('Layout.template')
 @section('nombre_pagina','Lista de cupones')
 @section('contenido')
+
 <div class="container col-md-6 rounded shadow p-3 mt-4">
     <form role="form" action="{{route('cupon.store')}}" method="POST">
         @csrf
