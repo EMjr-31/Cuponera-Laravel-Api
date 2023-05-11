@@ -5,6 +5,7 @@ use App\Http\Controllers\CuponController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\RubroController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/', function () {
 });
 
 Route::resource('cupon',CuponController::class);
+Route::resource('usuario',UsuarioController::class);
+
 
 Route::controller(EmpresaController::class)->group(function(){
     Route::get('/empresa','index');
