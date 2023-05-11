@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -170,7 +170,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         //JWT
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-    ])->toArray(),
+        //Espaniol
+        Laraveles\Spanish\SpanishServiceProvider::class,
+        ])->toArray(),
 
     /*
     |--------------------------------------------------------------------------

@@ -21,14 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(CuponController::class)->group(function(){
-    Route::get('/cupon','index');
-    Route::get('/cupon/create','create');
-    Route::get('/cupon/{id}','show');
-    Route::post('/cupon','store');
-    Route::put('/cupon/{id}','update');
-    Route::delete('/cupon/{id}','destroy');
-});
+Route::resource('cupon',CuponController::class);
 
 Route::controller(EmpresaController::class)->group(function(){
     Route::get('/empresa','index');

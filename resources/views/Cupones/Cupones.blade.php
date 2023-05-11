@@ -3,7 +3,7 @@
 @section('contenido')
 <div class="container mt-4 d-flex justify-content-between p-2">
     <h2 class="d-block">Lista de cupones</h2>
-    <a href="{{url('/cupon/create')}}" class="btn btn-primary ">Agregar cupon</a>
+    <a href="{{route('cupon.create')}}" class="btn btn-primary ">Agregar cupon</a>
 </div>
 <div class="row rounded shadow mt-3">
     <table id="myTable" class="display">
